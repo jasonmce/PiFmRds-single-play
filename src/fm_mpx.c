@@ -176,6 +176,8 @@ int fm_mpx_get_samples(float *mpx_buffer) {
                         return -1;
                     }
                     if(audio_len == 0) {
+                        // Song is done, return -1 rather than restart.
+                        return -1;
                         if( sf_seek(inf, 0, SEEK_SET) < 0 ) {
                             fprintf(stderr, "Could not rewind in audio file, terminating\n");
                             return -1;
